@@ -2,6 +2,7 @@ export const config = {
   theme: {
     extend: {
       fontFamily: {
+        sans: ['Inter', 'sans-serif'],
         playfair: ["Playfair Display", "serif"],
         bebas: ["Bebas Neue", "sans-serif"],
         dmsans: ["DM Sans", "sans-serif"],

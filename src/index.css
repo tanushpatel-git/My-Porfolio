@@ -1,12 +1,44 @@
 @import "tailwindcss";
+
 body {
     background-color: black;
 }
+
 :root {
     --loadBg: #F6F0D7;
-    --loadText: #89986D;
+    --loadText: #6F7F4C;
     --textDark: #2e2e2e;
     --textLight: #f1f1f1;
     --background: #9d8189;
+}
+
+/* Custom animation delays */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+.animation-delay-1000 {
+    animation-delay: 1s;
+}
+
+.animation-delay-3000 {
+    animation-delay: 3s;
+}
+
+.delay-500 {
+    animation-delay: 500ms;
 }
 
