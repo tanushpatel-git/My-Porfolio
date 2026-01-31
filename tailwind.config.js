@@ -1,4 +1,4 @@
-module.exports = {
+export const config = {
   theme: {
     extend: {
       fontFamily: {
@@ -8,7 +8,7 @@ module.exports = {
         cinzel: ["Cinzel", "serif"],
         space: ["Space Grotesk", "sans-serif"]
       }
-    }
+    },
   },
   plugins: []
 };

@@ -9,7 +9,7 @@ const fonts = [
   "italic"
 ];
 
-const NameLoader = ({ show, name = "Tanush Patel" }) => {
+const NameLoader = ({ children, show, name = "Tanush" }) => {
   const [fontIndex, setFontIndex] = useState(0);
   useEffect(() => {
     if (!show) return;
@@ -22,24 +22,25 @@ const NameLoader = ({ show, name = "Tanush Patel" }) => {
   }, [show]);
 
   return (
-    <AnimatePresence>
+  <>
+    <AnimatePresence mode="wait">
       {show && (
         <motion.div
-          className="fixed inset-0 z-9999 flex items-center justify-center bg-[#ede0d4]"
+          className="fixed inset-0 cursor-wait z-9999 flex items-center justify-center bg-(--loadBg)"
           initial={{ y: "-100%" }}
           animate={{ y: 0 }}
           exit={{ y: "100%" }}
           transition={{
             duration: 0.8,
-            ease: [0.77, 0, 0.175, 1]
+            ease: [0.77, 0, 0.175, 1],
           }}
         >
           <motion.h1
             key={fontIndex}
-            className={`text-[#7f5539] text-5xl md:text-7xl ${fonts[fontIndex]}`}
+            className={`text-(--loadText) text-5xl md:text-7xl ${fonts[fontIndex]}`}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.12 }}
           >
             {name}
@@ -47,7 +48,11 @@ const NameLoader = ({ show, name = "Tanush Patel" }) => {
         </motion.div>
       )}
     </AnimatePresence>
-  );
+
+    {!show && children}
+  </>
+);
+
 };
 
 export default NameLoader;
