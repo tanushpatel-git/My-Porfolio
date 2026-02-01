@@ -8,7 +8,7 @@ export const config = {
         dmsans: ["DM Sans", "sans-serif"],
         cinzel: ["Cinzel", "serif"],
         space: ["Space Grotesk", "sans-serif"]
-      }
+      },
     },
   },
   plugins: []

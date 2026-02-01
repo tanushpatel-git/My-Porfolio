@@ -38,7 +38,7 @@ const NameLoader = ({ children, show, name = "Tanush" }) => {
       }}
       exit={{
         y: "-150%", // smooth upward movement
-        clipPath: "inset(0% 0% 0% 0%) round 500px", // corners fully curved
+        clipPath: "inset(0% 0% 0% 0%) round [100%]", // corners fully curved
         opacity: 0.98,
         transition: {
           duration: 3,
