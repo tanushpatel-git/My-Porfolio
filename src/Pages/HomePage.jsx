@@ -1,87 +1,77 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import {motion}  from "framer-motion";
 import portfolioImage from "../assets/TanushImage.png";
-import MagneticLink from "../Components/uiAnimationHooks/MagneticLink";
+import ScrollVelocity from "../Components/uiAnimationHooks/ScrollVelocity";
+import Navbar from "../Components/CommonCompo/Navbar";
 
 export default function Hero() {
-
   return (
     <div className="min-h-screen bg-[#a7aaaa] relative overflow-hidden">
 
-      {/* Top Nav */}
-      <header className="absolute top-0 left-0 w-full flex items-center justify-between px-10 py-6 text-white z-20">
-        <MagneticLink href="#home">
-          <div className="flex items-center justify-center gap-2 group cursor-pointer">
-          <span className="text-xl opacity-80">©</span>
+      {/* ================= TOP NAV ================= */}
+      <Navbar />
+      
 
-          <div className="relative w-[20vw] overflow-hidden h-[1.8em]">
-
-            <span
-              className="absolute inset-0 text-xl opacity-80
-                 transition-transform duration-300
-                 translate-x-0
-                 group-hover:-translate-x-full"
-            >
-              Code by Tanush
-            </span>
-
-            {/* Tanush Patel */}
-            <span
-              className="absolute inset-0 text-xl opacity-80
-                 transition-transform duration-300
-                 translate-x-full
-                 group-hover:translate-x-0"
-            >
-              Tanush Patel
-            </span>
-          </div>
-        </div></MagneticLink>
-
-        <nav className="flex gap-8 text-xl">
-          <MagneticLink href="#work">Work</MagneticLink>
-          <MagneticLink href="#about">About</MagneticLink>
-          <MagneticLink href="#contact">Contact</MagneticLink>
-        </nav>
-      </header>
-
-      {/* Location pill */}
-      <div className="absolute left-10 top-1/2 -translate-y-1/2 z-20">
-        <div className="flex items-center gap-4 bg-black/80 text-white px-6 py-4 rounded-full">
-          <span className="text-sm leading-tight">
-            Located<br />in India
+      {/* ================= LOCATION PILL ================= */}
+      <motion.div
+        className="absolute left-10 top-1/2 -translate-y-1/2 z-20"
+        initial={{ x: -60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+      >
+        <div className="relative -left-10 flex items-center gap-4 bg-black/80 text-white px-10 py-7 rounded-r-full">
+          <span className="text-xl leading-tight font-montserrat">
+            Located<br />in the India
           </span>
-          <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-            🌍
+          <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center">
+            <img className="motion-safe:animate-spin w-10" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACOElEQVR4AbTUW3biMBAEUGk2FlgZZGUhK2PqNm4HB8PhY8ZHhdSP6pLawn/Gf37eErher4cFX5nPCw7v7O2lQAopeE2hrwWZxik/ULHknGM/HbsCIdmxwr3Lz3l7jrdpzlS8BMYp+cau0INAMiXasQKfKjxBx46JWxPCjfkzNgJLcce3Y8TOJNbrh3nOqXCL9KkrbyMQTxdHiHkbKVAC2YDWVYH2JQNnxMaR5/Rx38YqELIE3kvWCkkscuwaCfL1y/WO4hpy62bFcIqRZHkxx1gFYp0CQxBqp3HYFSJoG1iDWFIGLuCxm3sTiGI7EBQ45shTZvCd9XnBJTOULRZoj1w8ouAUVbNPUEbICitACPdthIvXwiuvBVZHL36dqt2/59rIXW7H+bXs1qJ4PwLOTP9k6Mi3Sn0CfePkKzhyLcbY+Mf2qdhd7jYaqwWyHF5MXbedI1f81Q/Ogr5J1ZESuNvBKUWg7nrWxkeIq3DW9/dea23Mf0Jh2JyqBFQJSjGzdjViDgSioABYg9jIg+uaQsyBb15f8sgpOviRdV83RLG4Zt91V3l6qsIY9d2KLffAl3V/FX4EBAIi1YKsjdqJtjBCdNcV0pYqxg/JUdSpisMH9y0aCsQp4bQQYj4dLeDb1W1zGkIraSPAGxEJJRIbMdOwM/Me5BDTOtxNzoOAKJFAzwlxaVsOVaNvWItqm/RqneR77Ap0QlheNiHvhhgIs+04KdOabxcvBZox57RLYqAwe3fHzen5LwAAAP//n9aONgAAAAZJREFUAwCg2ChAUxL52QAAAABJRU5ErkJggg==" alt="icon" />
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Right text */}
-      <div className="absolute right-16 top-1/2 -translate-y-1/2 text-white z-20">
-        <p className="text-xl leading-snug">
-          Freelance<br />Designer & Developer
+      {/* ================= RIGHT TEXT ================= */}
+      <motion.div
+        className="absolute right-16 top-1/2 -translate-y-1/2 text-white z-20"
+        initial={{ x: 60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+      >
+        <p className="text-4xl leading-snug font-playfair">
+          Freelance<br />Designer & Web Developer
         </p>
-      </div>
+      </motion.div>
 
-      {/* Infinite Name Marquee */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden z-10">
-        <div className={`w-[200%] flex animate-marquee marquee-animation`}>
-          <h1 className="text-white text-[18vw] font-light whitespace-nowrap">
-            Tanush Patel&nbsp;&nbsp;Tanush Patel&nbsp;&nbsp;
-          </h1>
-          <h1 className="text-white text-[18vw] font-light whitespace-nowrap">
-            Tanush Patel&nbsp;&nbsp;Tanush Patel&nbsp;&nbsp;
-          </h1>
-        </div>
-      </div>
+      {/* ================= MARQUEE ================= */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 overflow-hidden z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+      >
+        <ScrollVelocity
+          texts={["Tanush Patel"]}
+          velocity={-150}
+          className="custom-scroll-text text-white text-[17vw] font-normal font-bebas"
+        />
+      </motion.div>
 
-      {/* Image */}
-      <div className="absolute inset-0 flex items-end justify-center pointer-events-none">
+      {/* ================= IMAGE ================= */}
+      <motion.div
+        className="absolute inset-0 flex items-end justify-center pointer-events-none"
+        initial={{ y: 200, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.25, 0.8, 0.25, 1],
+          delay: 0.4,
+        }}
+      >
         <img
-          className="h-screen object-cover"
+          className="h-screen w-full object-cover"
           src={portfolioImage}
           alt="portfolio"
         />
-      </div>
+      </motion.div>
     </div>
   );
 }

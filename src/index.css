@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
+
 body {
     background-color: black;
+    font-family: 'Inter', sans-serif; /* Test font */
+}
+::-webkit-scrollbar {
+   display: none;
 }
 
 :root {
@@ -52,5 +57,10 @@ body {
 
 .delay-500 {
     animation-delay: 500ms;
+}
+
+/* Debug font test */
+.font-test {
+    font-family: 'Playfair Display', serif !important;
 }
 

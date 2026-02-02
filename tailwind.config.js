@@ -1,15 +1,54 @@
-export const config = {
+export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        playfair: ["Playfair Display", "serif"],
-        bebas: ["Bebas Neue", "sans-serif"],
-        dmsans: ["DM Sans", "sans-serif"],
-        cinzel: ["Cinzel", "serif"],
-        space: ["Space Grotesk", "sans-serif"]
+        // Clean app UI
+        ui: [
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif',
+        ],
+
+        // Old-school serif (VERY different)
+        classic: [
+          'Times New Roman',
+          'Times',
+          'serif',
+        ],
+
+        // Typewriter style (high contrast)
+        typewriter: [
+          'Courier New',
+          'Courier',
+          'monospace',
+        ],
+
+        // Wide, humanist sans
+        humanist: [
+          'Tahoma',
+          'Verdana',
+          'Geneva',
+          'sans-serif',
+        ],
+
+        // Aggressive, poster font
+        poster: [
+          'Impact',
+          'Arial Black',
+          'sans-serif',
+        ],
+
+        // Script / handwritten (rare but dramatic)
+        script: [
+          'Comic Sans MS',
+          'Comic Neue',
+          'cursive',
+        ],
       },
     },
   },
-  plugins: []
+  plugins: [],
 };

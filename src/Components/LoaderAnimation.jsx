@@ -2,14 +2,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const fonts = [
-  "font-sans",
-  "font-serif", 
-  "font-mono",
-  "font-bold",
-  "italic",
+  "font-ui",
+  "font-classic",
+  "font-typewriter",
+  "font-humanist",
+  "font-poster",
+  "font-script",
 ];
 
-const NameLoader = ({ children, show, name = "Tanush" }) => {
+const getFontFamily = (fontClass) => {
+  const fontMap = {
+    "font-ui": "system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif",
+    "font-classic": "'Times New Roman', Times, serif",
+    "font-typewriter": "'Courier New', Courier, monospace",
+    "font-humanist": "Tahoma, Verdana, Geneva, sans-serif",
+    "font-poster": "Impact, 'Arial Black', sans-serif",
+    "font-script": "'Comic Sans MS', 'Comic Neue', cursive",
+  };
+  return fontMap[fontClass] || "system-ui, sans-serif";
+};
+
+const NameLoader = ({ children, show, name = "Hello" }) => {
   const [fontIndex, setFontIndex] = useState(0);
 
   useEffect(() => {
@@ -27,18 +40,18 @@ const NameLoader = ({ children, show, name = "Tanush" }) => {
       <AnimatePresence mode="wait">
   {show && (
     <motion.div
-      className="fixed inset-0 z-999 flex items-center justify-center bg-(--loadBg)"
+      className="fixed inset-0 z-999 flex items-center justify-center bg-[#141517]"
       initial={{
         y: 0,
         clipPath: "inset(0% 0% 0% 0%) round 0%", // flat corners
       }}
       animate={{
         y: 0,
-        clipPath: "inset(0% 0% 0% 0%) round 0%", // stays flat
+        clipPath: "inset(0% 0% 0% 0%) round 0%", // stays flat  
       }}
       exit={{
         y: "-150%", // smooth upward movement
-        clipPath: "inset(0% 0% 0% 0%) round [100%]", // corners fully curved
+        clipPath: "inset(0% 0% 300% 300%) round 300%", // more pronounced curved corners
         opacity: 0.98,
         transition: {
           duration: 3,
@@ -52,7 +65,8 @@ const NameLoader = ({ children, show, name = "Tanush" }) => {
     >
       <motion.h1
         key={fontIndex}
-        className={`text-(--loadText) text-5xl md:text-7xl ${fonts[fontIndex]}`}
+        className={`text-[#f1f1f1] text-5xl md:text-7xl ${fonts[fontIndex]}`}
+        style={{ fontFamily: getFontFamily(fonts[fontIndex]) }}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}
