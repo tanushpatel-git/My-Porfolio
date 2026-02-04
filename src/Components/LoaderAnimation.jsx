@@ -40,7 +40,7 @@ const NameLoader = ({ children, show, name = "Hello" }) => {
       <AnimatePresence mode="wait">
   {show && (
     <motion.div
-      className="fixed inset-0 z-999 flex items-center justify-center bg-[#141517]"
+      className="fixed cursor-progress inset-0 z-999 flex items-center justify-center bg-[#141517]"
       initial={{
         y: 0,
         clipPath: "inset(0% 0% 0% 0%) round 0%", // flat corners

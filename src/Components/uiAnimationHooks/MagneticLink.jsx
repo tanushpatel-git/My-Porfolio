@@ -8,7 +8,7 @@ export default function MagneticLink({ children, href }) {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
 
-    ref.current.style.transform = `translate(${x * 0.8}px, ${y * 0.8}px)`;
+    ref.current.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
   };
 
   const handleMouseLeave = () => {
@@ -16,13 +16,13 @@ export default function MagneticLink({ children, href }) {
   };
 
   return (
-    <h4
+    <div
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="transition-transform duration-300 ease-out cursor-pointer hover:opacity-70"
     >
       {children}
-    </h4>
+    </div>
   );
 }

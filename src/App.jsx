@@ -4,6 +4,8 @@ import HomePage from './Pages/HomePage'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import MenuBtn from './Components/uiCompo/MenuBtn';
+import MagneticLink from './Components/uiAnimationHooks/MagneticLink';
 gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
@@ -15,6 +17,10 @@ const App = () => {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smooth: true,
     });
+    
+    // Make Lenis instance globally available
+    window.lenis = lenis;
+    
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
@@ -23,11 +29,12 @@ const App = () => {
     return () => {
       gsap.ticker.remove(lenis.raf);
       lenis.destroy();
+      window.lenis = null;
     };
   }, []);
 
   useEffect(() => {
-  const totalTime = 1500;
+    const totalTime = 1500;
     const timer = setTimeout(() => {
       setShowLoader(false);
     }, totalTime);
@@ -36,10 +43,15 @@ const App = () => {
 
   return (
     <div>
-    <LoaderAnimation show={showLoader}>
-      <HomePage />
-      <div className='h-screen w-full'></div>
-    </LoaderAnimation>
+      <LoaderAnimation show={showLoader}>
+        <div className='relative'>
+          <div id="page-wrapper">
+            <HomePage />
+          </div>
+          <MenuBtn/>
+        </div>
+        <div className='h-screen w-full bg-black relative'></div>
+      </LoaderAnimation>
     </div>
   )
 }
