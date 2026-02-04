@@ -49,7 +49,7 @@ export default function Hero() {
         transition={{ duration: 1, delay: 1 }}
       >
         <ScrollVelocity
-          texts={["Tanush Patel"]}
+          texts={["Tanush Patel "]}
           velocity={-150}
           className="custom-scroll-text text-white text-[17vw] font-normal font-bebas"
         />
