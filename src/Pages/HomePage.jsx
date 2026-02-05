@@ -3,10 +3,12 @@ import {motion}  from "framer-motion";
 import portfolioImage from "../assets/TanushImage.png";
 import ScrollVelocity from "../Components/uiAnimationHooks/ScrollVelocity";
 import Navbar from "../Components/CommonCompo/Navbar";
+import HomeWork from "../Components/uiCompo/HomeWork";
 
 export default function Hero() {
   return (
-    <div className="min-h-screen bg-[#a7aaaa] relative overflow-hidden">
+   <>
+    <div className="min-h-screen bg-[#8C8C8C] relative overflow-hidden">
 
       {/* ================= TOP NAV ================= */}
       <Navbar />
@@ -20,7 +22,8 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
       >
         <div className="relative -left-10 flex items-center gap-4 bg-black/80 text-white px-10 py-7 rounded-r-full">
-          <span className="text-xl leading-tight font-montserrat">
+          <span
+           className="text-xl leading-tight font-montserrat">
             Located<br />in the India
           </span>
           <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center">
@@ -73,5 +76,7 @@ export default function Hero() {
         />
       </motion.div>
     </div>
+      <HomeWork />
+   </>
   );
 }

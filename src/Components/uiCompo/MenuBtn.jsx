@@ -1,18 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import MagneticLink from "../uiAnimationHooks/MagneticLink";
-import {motion} from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
+import {Link} from 'react-router-dom'
+
 
 export default function MenuBtn() {
     const [open, setOpen] = useState(false);
+    const controls = useAnimation();
     const [showBtn, setShowBtn] = useState(false);
     const btnRef = useRef(null);
+    const [hovered, setHovered] = useState(false);
 
     /* ---------------- SHOW BUTTON AT 70% SCROLL ---------------- */
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
             const viewportHeight = window.innerHeight;
-            if (scrollY > viewportHeight * 0.5) {
+            if (scrollY > viewportHeight * 0.18) {
                 setShowBtn(true);
             } else {
                 setShowBtn(false);
@@ -77,6 +81,22 @@ export default function MenuBtn() {
         },
     };
 
+    const handleMouseEnterForHover = () => {
+        if (open) return;
+        controls.start({
+            y: "0%",
+            transition: { duration: 0.5, ease: [0.34, 1.0, 0.64, 1.0] }, // Custom bezier as requested
+        });
+    };
+
+    const handleMouseLeaveForHover = async () => {
+        if (open) return;
+        await controls.start({
+            y: "-100%",
+            transition: { duration: 0.4, ease: [0.34, 1.0, 0.64, 1.0] },
+        });
+        controls.set({ y: "100%" });
+    };
 
     return (
         <>
@@ -93,66 +113,133 @@ export default function MenuBtn() {
                 ref={btnRef}
                 onClick={() => setOpen(!open)}
                 onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                className={`group fixed top-[8vh] right-[4vw] z-50
+                onMouseLeave={(e) => {
+                    handleMouseLeave(e);
+                    setTimeout(() => setHovered(false), 100);
+                }}
+                onMouseEnter={() => setHovered(true)}
+                className={`group fixed top-[6vh] right-[2vw] z-50
                 lg:h-[80.85px] lg:w-[80.85px] h-16 w-16
                 rounded-full bg-[#171717]
                 flex items-center justify-center
                 cursor-pointer overflow-hidden
                 transition-all duration-700
-                ease-[cubic-bezier(.22,1,.36,1)]
+                ease-[cubic-bezier(.22,1.61,.36,1)]
                 ${showBtn ? "scale-100 opacity-100" : "scale-0 opacity-0"}
             `}
             >
-                <span
-                    className={`absolute rounded-full bg-(--hoverColor)
-                    transition-all duration-700
-                    ease-[cubic-bezier(.22,1,.36,1)]
-                    ${open ? "w-[200%] h-[200%]" : "w-10 h-10 -bottom-10 group-hover:bottom-5"}
-                `}
-                />
-                <div className="relative w-6 h-6 z-10 flex justify-center items-center">
-                    <span
-                        className={`absolute w-6 h-0.5 rounded-full transition-all duration-500
-                        ${open ? "rotate-45 bg-white" : "-translate-y-2 bg-white"}
-                    `}
+                <div
+                    onMouseEnter={handleMouseEnterForHover}
+                    onMouseLeave={handleMouseLeaveForHover}
+                    className=
+                    "relative flex items-center justify-center w-full h-full cursor-pointer overflow-hidden"
+                >
+                    {/* BLUE CIRCLE */}
+                    <motion.div
+                        initial={{ y: "100%" }}
+                        animate={controls}
+                        className="absolute inset-0 z-0 bg-[#455ce9]"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            borderRadius: "9999px"
+                        }}
                     />
-                    <span
-                        className={`absolute w-6 h-0.5 rounded-full transition-all duration-500
-                        ${open ? "-rotate-45 bg-white" : "translate-y-2 bg-white"}
-                    `}
-                    />
-                </div>
-            </button>
 
+
+
+                    {/* ICON */}
+                    <div className="relative w-6 h-6 z-10 flex justify-center items-center">
+                        <span
+                            className={`absolute w-6 h-0.5 rounded-full transition-all duration-500 ${open ? "rotate-45 bg-white" : "-translate-y-2 bg-white"}`}
+                        />
+                        <span
+                            className={`absolute w-6 h-0.5 rounded-full transition-all duration-500 ${open ? "-rotate-45 bg-white" : "translate-y-2 bg-white"}`}
+                        />
+                    </div>
+                </div>
+
+
+            </button>
             {/* SIDE MENU */}
-            <div
+            <motion.div
                 className={`fixed top-0 right-0 h-screen w-full lg:w-1/3
-                bg-[#171717] z-40
-                transition-transform duration-700
-                ease-[cubic-bezier(.22,1,.36,1)]
-                ${open ? "translate-x-0" : "translate-x-full"}
-            `}
+        bg-[#1C1D20] z-40
+        transition-transform duration-700
+        ease-[cubic-bezier(.22,1,.36,1)]
+        ${open ? "translate-x-0" : "translate-x-full"}
+    `}
+                animate={{
+                    borderRadius: open ? "0px" : "100px",
+                }}
+                transition={{
+                    duration: 0.7,
+                    ease: [0.22, 1, 0.36, 1],
+                }}
             >
+
                 <motion.div
-                    className="h-full flex flex-col justify-center px-12 gap-8 text-white"
+                    className="h-full w-full flex flex-col justify-center px-16 text-white"
                     variants={menuContainer}
                     initial="hidden"
                     animate={open ? "visible" : "hidden"}
                 >
-                    {["Home", "Work", "About", "Contact"].map((item) => (
-                        <MagneticLink key={item}>
-                            <motion.a
-                                variants={menuItem}
-                                className="text-4xl font-light hover:translate-x-2 transition"
-                            >
-                                {item}
-                            </motion.a>
-                        </MagneticLink>
-                    ))}
-                </motion.div>
+                    {/* NAV LABEL */}
+                    <p className="absolute top-32 left-22 text-[10px] font-sans tracking-widest text-gray-400">
+                        NAVIGATION
+                    </p>
+                    <div className="absolute top-40 mt-4 left-22 h-[0.3px] w-76 bg-gray-400" />
 
-            </div>
+                    {/* MENU ITEMS */}
+                    <div className="flex flex-col gap-10">
+                        {["Home", "Work", "About", "Contact"].map((item) => (
+                            <motion.a
+                                href={item.href}
+                                key={item}
+                                variants={menuItem}
+                                className="group flex items-center gap-4 text-6xl font-light leading-none cursor-pointer"
+                                whileHover="hover"
+                                initial="rest"
+                                animate="rest"
+                            >
+                                   {/* DOT */}
+                                   <motion.span
+                                       className="text-3xl"
+                                       variants={{
+                                           rest: { opacity: 0, x: -10 },
+                                           hover: { opacity: 1, x: 0 },
+                                       }}
+                                       transition={{ duration: 0.25, ease: "easeOut" }}
+                                   >
+                                       •
+                                   </motion.span>
+
+                                   {/* TEXT */}
+                                   <MagneticLink>
+                                       <motion.span
+                                           variants={{
+                                               rest: { x: 0 },
+                                               hover: { x: 6 },
+                                           }}
+                                           transition={{ duration: 0.25, ease: "easeOut" }}
+                                       >
+                                           {item}
+                                       </motion.span>
+                                   </MagneticLink>
+                            </motion.a>
+                        ))}
+                    </div>
+                    {/* SOCIALS */}
+                    <div className="absolute bottom-20 left-16">
+                        <p className="text-[10px] tracking-widest text-gray-400 mb-4">SOCIALS</p>
+                        <div className="flex gap-10 text-sm">
+                            <MagneticLink><p className="relative inline-block after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full">Instagram</p></MagneticLink>
+                            <MagneticLink><p className="relative inline-block after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full">Twitter</p></MagneticLink>
+                            <MagneticLink><p className="relative inline-block after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full">LinkedIn</p></MagneticLink>
+                        </div>
+                    </div>
+                </motion.div>
+            </motion.div>
         </>
     );
 }

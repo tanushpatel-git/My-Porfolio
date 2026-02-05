@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export default function MagneticLink({ children, href }) {
+export default function MagneticLink({ children  }) {
   const ref = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -20,7 +20,7 @@ export default function MagneticLink({ children, href }) {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="transition-transform duration-300 ease-out cursor-pointer hover:opacity-70"
+      className="transition-transform duration-300 ease-out cursor-pointer"
     >
       {children}
     </div>
