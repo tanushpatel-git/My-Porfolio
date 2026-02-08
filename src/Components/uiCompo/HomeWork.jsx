@@ -86,7 +86,7 @@ export default function HomeWork() {
           {/* Project Row */}
           <div className="mt-20 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
             <h2 className="text-6xl font-semibold tracking-tight">
-              TWICE
+              ORDER MATE
             </h2>
 
             <p className="text-neutral-500 md:text-right">
