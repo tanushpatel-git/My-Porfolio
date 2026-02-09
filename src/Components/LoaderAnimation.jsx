@@ -63,7 +63,9 @@ const NameLoader = ({ children, show, name = "Hello" }) => {
         ease: "easeOut"
       }}
     >
-      <motion.h1
+      <div className="flex justify-center items-center gap-3">
+      <div className="bg-[#f1f1f1] w-4 h-4 rounded-full"/>
+        <motion.h1
         key={fontIndex}
         className={`text-[#f1f1f1] text-5xl md:text-7xl ${fonts[fontIndex]}`}
         style={{ fontFamily: getFontFamily(fonts[fontIndex]) }}
@@ -74,6 +76,7 @@ const NameLoader = ({ children, show, name = "Hello" }) => {
       >
         {name}
       </motion.h1>
+      </div>
     </motion.div>
   )}
 </AnimatePresence>

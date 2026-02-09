@@ -53,8 +53,8 @@ export default function Hero() {
       >
         <ScrollVelocity
           texts={["Tanush Patel "]}
-          velocity={-150}
-          className="custom-scroll-text text-white text-[17vw] font-normal font-bebas"
+          velocity={150}
+          className="custom-scroll-text cursor-default text-white text-[17vw] font-extralight font-sans"
         />
       </motion.div>
 

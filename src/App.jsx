@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MenuBtn from './Components/uiCompo/MenuBtn';
 import LenisProviderHook from './Components/uiAnimationHooks/LenisProviderHook';
 gsap.registerPlugin(ScrollTrigger);
-
 const App = () => {
   const [showLoader, setShowLoader] = useState(true);
 
