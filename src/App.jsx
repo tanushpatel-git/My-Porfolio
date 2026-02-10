@@ -22,8 +22,8 @@ const App = () => {
     <div className='relative'>
       <LoaderAnimation show={showLoader}>
         <LenisProviderHook>
-            <HomePage />
-            <MenuBtn/>
+          <HomePage />
+          <MenuBtn />
         </LenisProviderHook>
       </LoaderAnimation>
     </div>
@@ -31,3 +31,4 @@ const App = () => {
 }
 
 export default App
+
