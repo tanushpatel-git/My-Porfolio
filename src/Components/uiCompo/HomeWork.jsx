@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import K72 from "../../assets/k72.png";
 import OrderMate from "../../assets/order-mate.png";
 import JobPortal from "../../assets/job-portal.png";
+import HomeLastIntraction from "./HomeLastIntraction";
 
 export default function HomeWork() {
   const controls = useAnimation();
@@ -98,9 +99,9 @@ export default function HomeWork() {
   };
 
   const projects = [
-    { title: "ORDER MATE", image: OrderMate },
-    { title: "K72", image: K72 },
-    { title: "JOB PORTAL", image: JobPortal },
+    { title: "ORDER MATE", image: OrderMate, projectDiscription: "Route protection & Development" },
+    { title: "K72", image: K72, projectDiscription: "Intraction & Development" },
+    { title: "JOB PORTAL", image: JobPortal, projectDiscription: "Role based access control & Development" },
   ];
 
 
@@ -239,21 +240,22 @@ export default function HomeWork() {
               <div
                 key={project.title}
                 onMouseEnter={() => handleProjectEnter(index)}
-                className="mt-20 border-t pt-16 grid grid-cols-1 md:grid-cols-2 items-center gap-8"
+                className={`mt-20 border-t pt-16 grid grid-cols-1 md:grid-cols-2 items-center gap-8 ${index === projects.length - 1 ? "border-b border-b-neutral-800 pb-16" : ""}`}
               >
                 <h2 className="text-6xl font-semibold tracking-tight">
                   {project.title}
                 </h2>
                 <p className="text-neutral-500 md:text-right">
-                  Interaction & Development
+                  {project.projectDiscription}
                 </p>
               </div>
             ))}
-
           </section>
-
         </div>
       </section>
+      <div>
+      </div>
+      <HomeLastIntraction/>
     </div>
   );
 }

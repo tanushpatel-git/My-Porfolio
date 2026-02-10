@@ -151,10 +151,10 @@ export default function MenuBtn() {
                     {/* ICON */}
                     <div className="relative w-6 h-6 z-10 flex justify-center items-center">
                         <span
-                            className={`absolute w-6 h-0.5 rounded-full transition-all duration-500 ${open ? "rotate-45 bg-white" : "-translate-y-2 bg-white"}`}
+                            className={`absolute w-8 font-sans font-extralight h-0.5 mt-1 rounded-full transition-all duration-500 ${open ? "rotate-45 -mt-1 bg-white" : "-translate-y-2 bg-white"}`}
                         />
                         <span
-                            className={`absolute w-6 h-0.5 rounded-full transition-all duration-500 ${open ? "-rotate-45 bg-white" : "translate-y-2 bg-white"}`}
+                            className={`absolute w-8 font-sans font-extralight h-0.5 -mt-1  rounded-full transition-all duration-500 ${open ? "-rotate-45 mt-1 bg-white" : "translate-y-2 bg-white"}`}
                         />
                     </div>
                 </div>

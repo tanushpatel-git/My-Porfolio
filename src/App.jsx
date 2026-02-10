@@ -19,14 +19,11 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className='relative'>
       <LoaderAnimation show={showLoader}>
         <LenisProviderHook>
-          <div className='relative'>
             <HomePage />
-          <MenuBtn/>
-        </div>
-        <div className='h-screen w-full bg-black relative'></div> 
+            <MenuBtn/>
         </LenisProviderHook>
       </LoaderAnimation>
     </div>
