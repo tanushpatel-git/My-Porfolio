@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import LoaderAnimation from './Components/LoaderAnimation'
-import HomePage from './Pages/HomePage'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MenuBtn from './Components/uiCompo/MenuBtn';
 import LenisProviderHook from './Components/uiAnimationHooks/LenisProviderHook';
+import AnimatedRoutes from './Components/uiAnimationHooks/AnimationRoutes';
+
 gsap.registerPlugin(ScrollTrigger);
+
 const App = () => {
   const [showLoader, setShowLoader] = useState(true);
-
 
   useEffect(() => {
     const totalTime = 1500;
@@ -22,7 +23,7 @@ const App = () => {
     <div className='relative'>
       <LoaderAnimation show={showLoader}>
         <LenisProviderHook>
-          <HomePage />
+          <AnimatedRoutes />
           <MenuBtn />
         </LenisProviderHook>
       </LoaderAnimation>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import MagneticLink from "../uiAnimationHooks/MagneticLink";
 import { motion, useAnimation } from 'framer-motion'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 export default function MenuBtn() {
@@ -193,40 +193,40 @@ export default function MenuBtn() {
                     {/* MENU ITEMS */}
                     <div className="flex flex-col gap-10">
                         {["Home", "Work", "About", "Contact"].map((item) => (
-                            <motion.a
-                                href={item.href}
-                                key={item}
-                                variants={menuItem}
-                                className="group flex items-center gap-4 text-6xl font-light leading-none cursor-pointer"
-                                whileHover="hover"
-                                initial="rest"
-                                animate="rest"
-                            >
-                                   {/* DOT */}
-                                   <motion.span
-                                       className="text-3xl"
-                                       variants={{
-                                           rest: { opacity: 0, x: -10 },
-                                           hover: { opacity: 1, x: 0 },
-                                       }}
-                                       transition={{ duration: 0.25, ease: "easeOut" }}
-                                   >
-                                       •
-                                   </motion.span>
+                            <Link to={item === "Home" ? "/" : item === "Work" ? "/work" : item === "About" ? "/about" : "/contact"} key={item}>
+                                <motion.p
+                                    variants={menuItem}
+                                    className="group flex items-center gap-4 text-6xl font-light leading-none cursor-pointer"
+                                    whileHover="hover"
+                                    initial="rest"
+                                    animate="rest"
+                                >
+                                    {/* DOT */}
+                                    <motion.span
+                                        className="text-3xl"
+                                        variants={{
+                                            rest: { opacity: 0, x: -10 },
+                                            hover: { opacity: 1, x: 0 },
+                                        }}
+                                        transition={{ duration: 0.25, ease: "easeOut" }}
+                                    >
+                                        •
+                                    </motion.span>
 
-                                   {/* TEXT */}
-                                   <MagneticLink>
-                                       <motion.span
-                                           variants={{
-                                               rest: { x: 0 },
-                                               hover: { x: 6 },
-                                           }}
-                                           transition={{ duration: 0.25, ease: "easeOut" }}
-                                       >
-                                           {item}
-                                       </motion.span>
-                                   </MagneticLink>
-                            </motion.a>
+                                    {/* TEXT */}
+                                    <MagneticLink>
+                                        <motion.span
+                                            variants={{
+                                                rest: { x: 0 },
+                                                hover: { x: 6 },
+                                            }}
+                                            transition={{ duration: 0.25, ease: "easeOut" }}
+                                        >
+                                            {item}
+                                        </motion.span>
+                                    </MagneticLink>
+                                </motion.p>
+                            </Link>
                         ))}
                     </div>
                     {/* SOCIALS */}
