@@ -1,6 +1,17 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
+const helloLanguages = [
+  { text: "Hello", lang: "English" },
+  { text: "नमस्ते", lang: "Hindi" },
+  { text: "Bonjour", lang: "French" },
+  { text: "Hola", lang: "Spanish" },
+  { text: "Ciao", lang: "Italian" },
+  { text: "こんにちは", lang: "Japanese" },
+  { text: "Hallo", lang: "German" },
+  { text: "你好", lang: "Chinese" },
+];
+
 const fonts = [
   "font-ui",
   "font-classic",
@@ -23,14 +34,17 @@ const getFontFamily = (fontClass) => {
 };
 
 const NameLoader = ({ children, show, name = "Hello" }) => {
+  const [languageIndex, setLanguageIndex] = useState(0);
   const [fontIndex, setFontIndex] = useState(0);
 
   useEffect(() => {
     if (!show) return;
 
     const interval = setInterval(() => {
+      setLanguageIndex((prev) => (prev + 1) % helloLanguages.length);
+      // Also cycle fonts for visual variety
       setFontIndex((prev) => (prev + 1) % fonts.length);
-    }, 150);
+    }, 200); // Slightly slower to allow reading each language
 
     return () => clearInterval(interval);
   }, [show]);
@@ -66,15 +80,15 @@ const NameLoader = ({ children, show, name = "Hello" }) => {
       <div className="flex justify-center items-center gap-3">
       <div className="bg-[#f1f1f1] w-4 h-4 rounded-full"/>
         <motion.h1
-        key={fontIndex}
+        key={languageIndex}
         className={`text-[#f1f1f1] text-5xl md:text-7xl ${fonts[fontIndex]}`}
         style={{ fontFamily: getFontFamily(fonts[fontIndex]) }}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.15, ease: "easeOut" }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
       >
-        {name}
+        {helloLanguages[languageIndex].text}
       </motion.h1>
       </div>
     </motion.div>

@@ -32,10 +32,10 @@ export default function AnimatedRoutes() {
   return (
     <>
       {/* LOADER */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {showLoader && (
           <LoaderPageForSpecificFile
-            pageName={pageNames[location.pathname]}
+            pageName={pageNames[location.pathname] ?? "Page"}
             onComplete={handleLoaderComplete}
           />
         )}

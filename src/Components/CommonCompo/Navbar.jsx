@@ -1,10 +1,13 @@
 
 import MagneticLink from "../uiAnimationHooks/MagneticLink";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 export default function Component() {
+
+  const location = useLocation();
+
   return (
     <motion.header
       className="absolute top-0 left-0 w-full flex items-center justify-between px-10 py-6 text-white z-20"
@@ -43,6 +46,14 @@ export default function Component() {
           <Link to="/work">
             <h1 className="relative inline-block group text-xl cursor-pointer">
               Work
+              {location.pathname === "/work" && (
+                <span
+                  className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
+           transform -translate-x-1/2
+           opacity-0 group-hover:opacity-100
+           transition-opacity duration-300"
+                ></span>
+              )}
               <span
                 className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
            transform -translate-x-1/2
@@ -56,6 +67,14 @@ export default function Component() {
         <MagneticLink>
           <h1 className="relative inline-block group text-xl cursor-pointer">
             About
+            {location.pathname === "/about" && (
+              <span
+                className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
+           transform -translate-x-1/2
+           opacity-0 group-hover:opacity-100
+           transition-opacity duration-300"
+              ></span>
+            )}
             <span
               className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
            transform -translate-x-1/2
@@ -67,6 +86,14 @@ export default function Component() {
         <MagneticLink>
           <h1 className="relative inline-block group text-xl  cursor-pointer">
             Contact
+            {location.pathname === "/contact" && (
+              <span
+                className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
+           transform -translate-x-1/2
+           opacity-0 group-hover:opacity-100
+           transition-opacity duration-300"
+              ></span>
+            )}
             <span
               className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
            transform -translate-x-1/2

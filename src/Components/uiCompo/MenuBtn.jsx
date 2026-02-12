@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import MagneticLink from "../uiAnimationHooks/MagneticLink";
 import { motion, useAnimation } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 
 export default function MenuBtn() {
@@ -10,6 +10,7 @@ export default function MenuBtn() {
     const [showBtn, setShowBtn] = useState(false);
     const btnRef = useRef(null);
     const [hovered, setHovered] = useState(false);
+    const location = useLocation();
 
     /* ---------------- SHOW BUTTON AT 70% SCROLL ---------------- */
     useEffect(() => {
@@ -97,6 +98,15 @@ export default function MenuBtn() {
         });
         controls.set({ y: "100%" });
     };
+
+    const [hoveredItem, setHoveredItem] = useState(null);
+
+
+    const isActiveRoute = (item) => {
+        if (item === "Home") return location.pathname === "/";
+        return location.pathname === `/${item.toLowerCase()}`;
+    };
+
 
     return (
         <>
@@ -193,28 +203,37 @@ export default function MenuBtn() {
                     {/* MENU ITEMS */}
                     <div className="flex flex-col gap-10">
                         {["Home", "Work", "About", "Contact"].map((item) => (
-                            <Link to={item === "Home" ? "/" : item === "Work" ? "/work" : item === "About" ? "/about" : "/contact"} key={item}>
-                                <motion.p
+                            <Link
+                             to={item === "Home" ? "/" : item === "Work" ? "/work" : item === "About" ? "/about" : "/contact"} key={item}>
+                                <motion.div
                                     variants={menuItem}
                                     className="group flex items-center gap-4 text-6xl font-light leading-none cursor-pointer"
-                                    whileHover="hover"
-                                    initial="rest"
-                                    animate="rest"
+                                    onMouseEnter={() => setHoveredItem(item)}
+                                    onMouseLeave={() => setHoveredItem(null)}
                                 >
                                     {/* DOT */}
                                     <motion.span
                                         className="text-3xl"
-                                        variants={{
-                                            rest: { opacity: 0, x: -10 },
-                                            hover: { opacity: 1, x: 0 },
+                                        animate={{
+                                            opacity:
+                                                hoveredItem === item ||
+                                                    (!hoveredItem && isActiveRoute(item))
+                                                    ? 1
+                                                    : 0,
+                                            x:
+                                                hoveredItem === item ||
+                                                    (!hoveredItem && isActiveRoute(item))
+                                                    ? 0
+                                                    : -10,
                                         }}
                                         transition={{ duration: 0.25, ease: "easeOut" }}
                                     >
                                         •
                                     </motion.span>
 
+
                                     {/* TEXT */}
-                                    <MagneticLink>
+                                    <MagneticLink >
                                         <motion.span
                                             variants={{
                                                 rest: { x: 0 },
@@ -225,7 +244,7 @@ export default function MenuBtn() {
                                             {item}
                                         </motion.span>
                                     </MagneticLink>
-                                </motion.p>
+                                </motion.div>
                             </Link>
                         ))}
                     </div>

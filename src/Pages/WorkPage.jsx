@@ -1,5 +1,3 @@
-
-
 export default function WorkPage() {
     return (
         <div className="min-h-screen bg-white text-black flex items-center justify-center">

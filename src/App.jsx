@@ -20,14 +20,12 @@ const App = () => {
   }, []);
 
   return (
-    <div className='relative'>
       <LoaderAnimation show={showLoader}>
         <LenisProviderHook>
           <AnimatedRoutes />
           <MenuBtn />
         </LenisProviderHook>
       </LoaderAnimation>
-    </div>
   )
 }
 

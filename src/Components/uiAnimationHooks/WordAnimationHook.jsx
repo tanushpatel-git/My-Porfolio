@@ -29,12 +29,12 @@ export function WordAnimationHook({ text, className }) {
     };
 
     return (
-        <motion.div
+        <motion.span
             variants={textContainer}
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, margin: "-120px" }}
-            className={className}
+            className={className ? `block ${className}` : "block"}
         >
             {text.split(" ").map((word, i) => (
                 <motion.span
@@ -45,6 +45,6 @@ export function WordAnimationHook({ text, className }) {
                     {word}
                 </motion.span>
             ))}
-        </motion.div>
+        </motion.span>
     );
 }
