@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {motion}  from "framer-motion";
 import portfolioImage from "../assets/TanushImage.png";
 import ScrollVelocity from "../Components/uiAnimationHooks/ScrollVelocity";
@@ -6,6 +6,11 @@ import Navbar from "../Components/CommonCompo/Navbar";
 import HomeWork from "../Components/uiCompo/HomeWork";
 
 export default function Hero() {
+
+
+  useEffect(()=>{
+    window.document.title = "Tanush Patel | Freelance Designer and Developer"
+  },[])
   return (
    <>
     <div className="min-h-screen bg-[#8C8C8C] relative overflow-hidden">

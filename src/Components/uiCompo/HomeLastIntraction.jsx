@@ -3,6 +3,7 @@ import MagneticLink from "../uiAnimationHooks/MagneticLink";
 import { useRef } from "react";
 import Scrollgallery from "../uiAnimationHooks/Scrollgallery";
 import FullFotter from "../CommonCompo/FullFotter";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,6 +11,7 @@ export default function HomeLastIntraction() {
   const controls = useAnimation();
   const btnHover = useRef(null);
   const sectionRef = useRef(null);
+  const navigate = useNavigate()
 
   const handleMouseEnterForHover = () => {
     if (btnHover.current) btnHover.current.style.color = "white";
@@ -50,6 +52,7 @@ export default function HomeLastIntraction() {
           {/* Button */}
           <MagneticLink >
             <button
+              onClick={()=>{navigate('/work')}}
               className="w-48 h-20 rounded-[9999px] border-2 border-neutral-200 bg-transparent text-black tracking-wide hover:scale-105 transition-transform overflow-hidden"
 
             >

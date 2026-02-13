@@ -113,7 +113,10 @@ export default function MenuBtn() {
             {/* DULL OVERLAY */}
             {open && (
                 <div
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                        setOpen(false);
+                        setTimeout(() => setHovered(false), 100);
+                    }}
                     className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
                 />
             )}
