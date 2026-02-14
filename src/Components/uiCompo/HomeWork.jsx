@@ -255,7 +255,7 @@ export default function HomeWork() {
       </section>
       <div>
       </div>
-      <HomeLastIntraction/>
+      <HomeLastIntraction />
     </div>
   );
 }

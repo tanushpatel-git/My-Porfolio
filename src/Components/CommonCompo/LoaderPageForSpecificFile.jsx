@@ -7,7 +7,7 @@ export default function LoaderPageForSpecificFile({ pageName, onComplete }) {
       initial={{ y: "100%" }}
       animate={{ y: ["100%", "0%", "-100%"] }}
       transition={{
-        duration: 1.8,
+        duration: 1.3,
         times: [0, 0.3, 1],
         ease: "easeInOut",
       }}

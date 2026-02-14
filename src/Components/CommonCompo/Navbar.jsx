@@ -48,7 +48,7 @@ export default function Navbar({colorInNavabar="white"}) {
               Work
               {location.pathname === "/work" && (
                 <span
-                  className="absolute left-1/2 -bottom-3 w-2 h-2 bg-black rounded-full
+                  className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
            transform -translate-x-1/2
            opacity-0 group-hover:opacity-100
            transition-opacity duration-300"
