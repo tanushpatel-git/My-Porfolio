@@ -75,7 +75,7 @@ export default function HomeLastIntraction() {
                 {/* ICON */}
                 <div ref={btnHover} className="relative font-sans z-10 flex justify-center items-center">
                   <h1 className="text-xl">More Work</h1>
-                  <h5 className="text-sm -mt-4">6</h5>
+                  <h5 className="text-sm -mt-4">7</h5>
                 </div>
               </div>
             </button>

@@ -20,7 +20,7 @@ export default function LoaderPageForSpecificFile({ pageName, onComplete }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 1, 0] }}
         transition={{
-          duration: 1.5,
+          duration: 1,
           times: [0.15, 0.4, 0.9],
           ease: "easeInOut",
         }}
