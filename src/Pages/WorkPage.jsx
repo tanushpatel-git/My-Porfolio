@@ -12,6 +12,7 @@ export default function WorkPage() {
     const controls = useAnimation();
     const controls2 = useAnimation();
     const controls3 = useAnimation();
+    const controls4 = useAnimation();
     const btnHover = useRef(null);
     const btnHover2 = useRef(null);
     const btnHover31 = useRef(null);
@@ -74,6 +75,19 @@ export default function WorkPage() {
             transition: { duration: 0.4, ease: [0.34, 1.0, 0.64, 1.0] },
         });
         controls3.set({ y: "100%" });
+    };
+    const handleMouseEnterForHover4 = () => {
+        controls4.start({
+            y: "0%",
+            transition: { duration: 0.5, ease: [0.34, 1.0, 0.64, 1.0] },
+        });
+    };
+    const handleMouseLeaveForHover4 = async () => {
+        await controls4.start({
+            y: "-100%",
+            transition: { duration: 0.4, ease: [0.34, 1.0, 0.64, 1.0] },
+        });
+        controls4.set({ y: "100%" });
     };
 
     const { scrollYProgress } = useScroll({
@@ -278,14 +292,14 @@ export default function WorkPage() {
 
                                 >
                                     <div
-                                        onMouseEnter={handleMouseEnterForHover}
-                                        onMouseLeave={handleMouseLeaveForHover}
+                                        onMouseEnter={handleMouseEnterForHover4}
+                                        onMouseLeave={handleMouseLeaveForHover4}
                                         className="relative flex items-center justify-center w-full h-full cursor-pointer overflow-hidden"
                                     >
                                         {/* BLUE CIRCLE */}
                                         <motion.div
                                             initial={{ y: "100%" }}
-                                            animate={controls}
+                                            animate={controls4}
                                             className="absolute inset-0 z-1 bg-[#455ce9]"
                                             style={{
                                                 width: "100%",
@@ -294,7 +308,7 @@ export default function WorkPage() {
                                             }}
                                         />
                                         {/* ICON */}
-                                        <div ref={btnHover} className="relative font-sans z-10 flex justify-center items-center">
+                                        <div className="relative font-sans z-10 flex justify-center items-center">
                                             <h1 className="text-xl text-white">My Archive Work</h1>
                                             <h5 className="text-sm -mt-4 text-white">2</h5>
                                         </div>
