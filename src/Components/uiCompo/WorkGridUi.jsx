@@ -63,14 +63,14 @@ function ProjectCard({ project }) {
         >
             {/* Image */}
             <motion.div
-                className="overflow-hidden h-[420px] w-full border-b border-gray-500"
+                className="overflow-hidden h-[420px] w-full border-b border-gray-500 flex justify-center items-center bg-[#F6F6F6]"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-[90%] h-[75%] object-cover"
                 />
             </motion.div>
 

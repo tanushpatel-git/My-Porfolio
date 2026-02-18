@@ -6,9 +6,15 @@ import { useAnimation, motion, useTransform, useScroll, AnimatePresence } from '
 import FullFotter from '../Components/CommonCompo/FullFotter'
 import WorkListUi from '../Components/uiCompo/WorkListUi'
 import WorkGridUi from '../Components/uiCompo/WorkGridUi';
+import web1 from '../assets/ProjectPhotosForFrontPage/web1.png'
+import web2 from '../assets/ProjectPhotosForFrontPage/web2.png'
+import web3 from '../assets/ProjectPhotosForFrontPage/web3.png'
+import jobPortal from '../assets/job-portal.png'
+import k72 from '../assets/k72.png'
+import orderMate from '../assets/order-mate.png'
 
 export default function WorkPage() {
-    const [listView, setListView] = useState();
+    const [listView, setListView] = useState(true);
     const navigate = useNavigate();
     const sectionRef2 = useRef(null);
     const controls0 = useAnimation();
@@ -16,6 +22,7 @@ export default function WorkPage() {
     const controls2 = useAnimation();
     const controls3 = useAnimation();
     const controls4 = useAnimation();
+    const controls5 = useAnimation();
     const btnHover0 = useRef(null);
     const btnHover = useRef(null);
     const btnHover2 = useRef(null);
@@ -23,6 +30,10 @@ export default function WorkPage() {
     const btnHover32 = useRef(null);
     const btnHover33 = useRef(null);
     const btnHover34 = useRef(null);
+    const btnHover51 = useRef(null);
+    const btnHover52 = useRef(null);
+    const btnHover53 = useRef(null);
+    const btnHover54 = useRef(null);
     const [activeFilter, setActiveFilter] = useState("All");
 
 
@@ -32,23 +43,38 @@ export default function WorkPage() {
 
     useEffect(() => {
         if (activeFilter !== "development") {
-          controls2.set({ y: "100%" }); // reset background
-          if (btnHover2.current) {
-            btnHover2.current.style.color = "black";
-          }
-        }else if(activeFilter !== "design"){
+            controls2.set({ y: "100%" }); // reset background
+            if (btnHover2.current) {
+                btnHover2.current.style.color = "black";
+            }
+        } if (activeFilter !== "design") {
             controls.set({ y: "100%" });
-            if(btnHover.current){
+            if (btnHover.current) {
                 btnHover.current.style.color = "black";
             }
-        }else{
+        } if (activeFilter != "All") {
             controls0.set({ y: "100%" });
-            if(btnHover0.current){
+            if (btnHover0.current) {
                 btnHover0.current.style.color = "black";
             }
         }
-      }, [activeFilter]);
-      
+    }, [activeFilter]);
+    useEffect(() => {
+        if (listView) {
+            // Switching to List: reset Grid hover background + grid icon borders.
+            controls3.set({ y: "100%" });
+            [btnHover31, btnHover32, btnHover33, btnHover34].forEach((ref) => {
+                if (ref.current) ref.current.style.borderColor = "black";
+            });
+        } else {
+            // Switching to Grid: reset List hover background + list icon borders.
+            controls5.set({ y: "100%" });
+            [btnHover51, btnHover52, btnHover53, btnHover54].forEach((ref) => {
+                if (ref.current) ref.current.style.borderColor = "black";
+            });
+        }
+    }, [listView]);
+
 
 
     const handleMouseEnterForHover = () => {
@@ -117,17 +143,40 @@ export default function WorkPage() {
     };
 
     const handleMouseEnterForHover0 = () => {
+        if (btnHover0.current) btnHover0.current.style.color = "white";
         controls0.start({
             y: "0%",
             transition: { duration: 0.5, ease: [0.34, 1.0, 0.64, 1.0] },
         });
     };
     const handleMouseLeaveForHover0 = async () => {
+        if (btnHover0.current) btnHover0.current.style.color = "black";
         await controls0.start({
             y: "-100%",
             transition: { duration: 0.4, ease: [0.34, 1.0, 0.64, 1.0] },
         });
         controls0.set({ y: "100%" });
+    };
+    const handleMouseEnterForHover5 = () => {
+        if (btnHover51.current) btnHover51.current.style.borderColor = "white";
+        if (btnHover52.current) btnHover52.current.style.borderColor = "white";
+        if (btnHover53.current) btnHover53.current.style.borderColor = "white";
+        if (btnHover54.current) btnHover54.current.style.borderColor = "white";
+        controls5.start({
+            y: "0%",
+            transition: { duration: 0.5, ease: [0.34, 1.0, 0.64, 1.0] },
+        });
+    };
+    const handleMouseLeaveForHover5 = async () => {
+        if (btnHover51.current) btnHover51.current.style.borderColor = "black";
+        if (btnHover52.current) btnHover52.current.style.borderColor = "black";
+        if (btnHover53.current) btnHover53.current.style.borderColor = "black";
+        if (btnHover54.current) btnHover54.current.style.borderColor = "black";
+        await controls5.start({
+            y: "-100%",
+            transition: { duration: 0.4, ease: [0.34, 1.0, 0.64, 1.0] },
+        });
+        controls5.set({ y: "100%" });
     };
 
     const { scrollYProgress } = useScroll({
@@ -191,14 +240,29 @@ export default function WorkPage() {
     // Project i Have is 
 
     const projects = [
-        { title: "ORDER MATE", image: "OrderMate", projectDiscription: "Route protection & Development", year: "2023" },
-        { title: "K72", image: "K72", projectDiscription: "Intraction & Development", year: "2024" },
-        { title: "JOB PORTAL", image: "JobPortal", projectDiscription: "Role based access control & Development", year: "2024" },
-        { title: "EMPLOYE TASK", image: "JobPortal", projectDiscription: "Role based access control & Development", year: "2024" },
-        { title: "E-COMMERCE", image: "JobPortal", projectDiscription: "Role based access control & Development", year: "2024" },
-        { title: "DISASTER MANAGEMENT SYSTEM", image: "JobPortal", projectDiscription: "Role based access control & Development", year: "2024" },
+        { title: "ORDER MATE", image: orderMate , projectDiscription: "Route protection & Development", year: "2025" },
+        { title: "JOB PORTAL", image: jobPortal , projectDiscription: "Role based access control & Development", year: "2024" },
+        { title: "EMPLOYE TASK", image: web3 , projectDiscription: "Role based access control & Development", year: "2024" },
+        { title: "Head Phone Era", image: "JobPortal", projectDiscription: "Design & Development", year: "2026" },
+        { title: "E-COMMERCE", image: web1 , projectDiscription: "Role based access control & Development", year: "2025" },
+        { title: "K72", image: k72 , projectDiscription: "Intraction & Development", year: "2024" },
+        { title: "DISASTER MANAGEMENT SYSTEM", image: web2, projectDiscription: "Role based access control & Development", year: "2024" },
         { title: "BOOK MANAGEMENT SYSTEM", image: "JobPortal", projectDiscription: "Role based access control & Development", year: "2024" },
     ];
+
+    const designProject = [
+        { title: "ORDER MATE", image: orderMate , projectDiscription: "Route protection & Development", year: "2023" },
+        { title: "K72", image: k72 , projectDiscription: "Intraction & Development", year: "2024" },
+        { title: "Head Phone Era", image: "JobPortal", projectDiscription: "Design & Development", year: "2026" },
+    ]
+
+    const developmentProjects = [
+        { title: "JOB PORTAL", image: jobPortal , projectDiscription: "Role based access control & Development", year: "2024" },
+        { title: "EMPLOYE TASK", image: web3 , projectDiscription: "Role based access control & Development", year: "2024" },
+        { title: "E-COMMERCE", image: web1 , projectDiscription: "Role based access control & Development", year: "2025" },
+        { title: "DISASTER MANAGEMENT SYSTEM", image: web2, projectDiscription: "Role based access control & Development", year: "2024" },
+        { title: "BOOK MANAGEMENT SYSTEM", image: "JobPortal", projectDiscription: "Role based access control & Development", year: "2024" },
+    ]
 
 
 
@@ -247,7 +311,7 @@ export default function WorkPage() {
 
 
                                 <MagneticLink>
-                                <button
+                                    <button
                                         onClick={() => setActiveFilter("All")}
                                         className={`w-48 h-20 rounded-[9999px] overflow-hidden transition-transform
       ${activeFilter === "All"
@@ -352,7 +416,7 @@ export default function WorkPage() {
                                                     }`}
                                             >
                                                 <h1 className="text-xl">Development</h1>
-                                                <h5 className="text-sm -mt-4">4</h5>
+                                                <h5 className="text-sm -mt-4">5</h5>
                                             </div>
                                         </div>
                                     </button>
@@ -366,13 +430,34 @@ export default function WorkPage() {
                                 {/* List View */}
                                 <MagneticLink>
                                     <button
-                                        onClick={() => setListView(!listView)}
-                                        className="w-20 h-20 rounded-full bg-black flex items-center justify-center">
-                                        <div className="space-y-1">
-                                            <span className="block font-extralight font-sans w-5 h-[2px] bg-white"></span>
-                                            <span className="block font-extralight font-sans w-5 h-[2px] bg-white"></span>
-                                            <span className="block font-extralight font-sans w-5 h-[2px] bg-white"></span>
-                                            <span className="block font-extralight font-sans w-5 h-[2px] bg-white"></span>
+                                        onClick={() => setListView(true)}
+                                        className={`w-20 h-20 rounded-full flex items-center justify-center overflow-hidden
+      ${listView
+                                                ? "bg-black text-white"
+                                                : "border-2 border-neutral-200 bg-transparent text-black hover:scale-105"
+                                            }
+    `}
+                                    >
+                                        <div
+                                            onMouseEnter={listView ? undefined : handleMouseEnterForHover5}
+                                            onMouseLeave={listView ? undefined : handleMouseLeaveForHover5}
+                                            className="relative flex items-center justify-center w-full h-full"
+                                        >
+                                            {listView || (
+                                                <motion.div
+                                                    initial={{ y: "100%" }}
+                                                    animate={controls5}
+                                                    className="absolute inset-0 z-0 bg-[#455ce9]"
+                                                    style={{ borderRadius: "9999px" }}
+                                                />
+                                            )}
+
+                                            <div className="relative z-10 space-y-1">
+                                                <span ref={btnHover51} className={`block font-extralight font-sans w-5 h-[2px] border ${listView ? 'border-white' : 'border-black'}`}></span>
+                                                <span ref={btnHover52} className={`block font-extralight font-sans w-5 h-[2px] border ${listView ? 'border-white' : 'border-black'}`}></span>
+                                                <span ref={btnHover53} className={`block font-extralight font-sans w-5 h-[2px] border ${listView ? 'border-white' : 'border-black'}`}></span>
+                                                <span ref={btnHover54} className={`block font-extralight font-sans w-5 h-[2px] border ${listView ? 'border-white' : 'border-black'}`}></span>
+                                            </div>
                                         </div>
                                     </button>
                                 </MagneticLink>
@@ -380,28 +465,33 @@ export default function WorkPage() {
                                 {/* Grid View */}
                                 <MagneticLink>
                                     <button
-                                        onClick={() => setListView(!listView)}
-                                        className="w-20 h-20 rounded-full border border-gray-300 bg-transparent text-black tracking-wide hover:scale-105 transition-transform overflow-hidden">
+                                        onClick={() => setListView(false)}
+                                        className={`w-20 h-20 rounded-[9999px] overflow-hidden transition-transform
+      ${!listView
+                                                ? "bg-black text-white"
+                                                : "border-2 border-neutral-200 bg-transparent text-black hover:scale-105"
+                                            }
+    `}
+                                    >
                                         <div
-                                            onMouseEnter={handleMouseEnterForHover3}
-                                            onMouseLeave={handleMouseLeaveForHover3}
-                                            className="relative flex items-center justify-center w-full h-full cursor-pointer overflow-hidden">
-                                            {/* BLUE CIRCLE */}
-                                            <motion.div
-                                                initial={{ y: "100%" }}
-                                                animate={controls3}
-                                                className="absolute inset-0 z-1 bg-[#455cee]"
-                                                style={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    borderRadius: "9999px"
-                                                }}
-                                            />
+                                            onMouseEnter={listView ? handleMouseEnterForHover3 : undefined}
+                                            onMouseLeave={listView ? handleMouseLeaveForHover3 : undefined}
+                                            className="relative flex items-center justify-center w-full h-full"
+                                        >
+                                            {listView && (
+                                                <motion.div
+                                                    initial={{ y: "100%" }}
+                                                    animate={controls3}
+                                                    className="absolute inset-0 z-0 bg-[#455ce9]"
+                                                    style={{ borderRadius: "9999px" }}
+                                                />
+                                            )}
+
                                             <div className='relative z-10 grid grid-cols-2 gap-1'>
-                                                <span ref={btnHover31} className="w-2 h-2 border border-black"></span>
-                                                <span ref={btnHover32} className="w-2 h-2 border border-black"></span>
-                                                <span ref={btnHover33} className="w-2 h-2 border border-black"></span>
-                                                <span ref={btnHover34} className="w-2 h-2 border border-black"></span>
+                                                <span ref={btnHover31} className={`w-2 h-2 border ${!listView ? 'border-white' : 'border-black'}`}></span>
+                                                <span ref={btnHover32} className={`w-2 h-2 border ${!listView ? 'border-white' : 'border-black'}`}></span>
+                                                <span ref={btnHover33} className={`w-2 h-2 border ${!listView ? 'border-white' : 'border-black'}`}></span>
+                                                <span ref={btnHover34} className={`w-2 h-2 border ${!listView ? 'border-white' : 'border-black'}`}></span>
                                             </div>
                                         </div>
                                     </button>
@@ -423,19 +513,36 @@ export default function WorkPage() {
                     {/* ---------------------------Conditional rendering---------------------------- */}
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={listView ? "list" : "grid"}   // 👈 forces re-mount
+                            key={`${listView ? "list" : "grid"}-${activeFilter}`}
                             variants={workWrapper}
                             initial="hidden"
                             animate="show"
                             exit="hidden"
                         >
                             {listView ? (
-                                <WorkListUi Projects={projects} />
+                                <WorkListUi
+                                    Projects={
+                                        activeFilter === "All"
+                                            ? projects
+                                            : activeFilter === "design"
+                                                ? designProject
+                                                : developmentProjects
+                                    }
+                                />
                             ) : (
-                                <WorkGridUi Projects={projects} />
+                                <WorkGridUi
+                                    Projects={
+                                        activeFilter === "All"
+                                            ? projects
+                                            : activeFilter === "design"
+                                                ? designProject
+                                                : developmentProjects
+                                    }
+                                />
                             )}
                         </motion.div>
                     </AnimatePresence>
+
                     <motion.section
                         ref={sectionRef2}
                         className="overflow-hidden pb-8"
@@ -454,7 +561,6 @@ export default function WorkPage() {
                             {/* Button */}
                             <MagneticLink >
                                 <button
-                                    onClick={() => { navigate('/work') }}
                                     className="w-48 h-20 rounded-[9999px] border-2 border-neutral-200 text-white bg-(--loadBg) tracking-wide hover:scale-105 transition-transform overflow-hidden"
 
                                 >
@@ -490,32 +596,3 @@ export default function WorkPage() {
         </div >
     );
 }
-
-// {/* <MagneticLink>
-//                                     <button
-//                                         onClick={() => setListView(!listView)}
-//                                         className="w-20 h-20 rounded-full border border-gray-300 bg-transparent text-black tracking-wide hover:scale-105 transition-transform overflow-hidden">
-//                                         <div
-//                                             onMouseEnter={handleMouseEnterForHover3}
-//                                             onMouseLeave={handleMouseLeaveForHover3}
-//                                             className="relative flex items-center justify-center w-full h-full cursor-pointer overflow-hidden">
-//                                             {/* BLUE CIRCLE */}
-//                                             <motion.div
-//                                                 initial={{ y: "100%" }}
-//                                                 animate={controls3}
-//                                                 className="absolute inset-0 z-1 bg-[#455cee]"
-//                                                 style={{
-//                                                     width: "100%",
-//                                                     height: "100%",
-//                                                     borderRadius: "9999px"
-//                                                 }}
-//                                             />
-//                                             <div className='relative z-10 grid grid-cols-2 gap-1'>
-//                                                 <span ref={btnHover31} className="w-2 h-2 border border-black"></span>
-//                                                 <span ref={btnHover32} className="w-2 h-2 border border-black"></span>
-//                                                 <span ref={btnHover33} className="w-2 h-2 border border-black"></span>
-//                                                 <span ref={btnHover34} className="w-2 h-2 border border-black"></span>
-//                                             </div>
-//                                         </div>
-//                                     </button>
-//                                 </MagneticLink> */}
