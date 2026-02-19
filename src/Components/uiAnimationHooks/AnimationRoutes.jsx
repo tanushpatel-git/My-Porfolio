@@ -3,7 +3,9 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import HomePage from "../../Pages/HomePage";
 import WorkPage from "../../Pages/WorkPage";
+import ArchivePage from "../../Pages/ArchivePage"
 import LoaderPageForSpecificFile from "../CommonCompo/LoaderPageForSpecificFile";
+import ContactPage from "../../Pages/ContactPage"
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -14,6 +16,8 @@ export default function AnimatedRoutes() {
   const pageNames = {
     "/": "Home",
     "/work": "Work",
+    "/archive":"Archive",
+    "/contact":"Contact"
   };
 
   // Trigger loader when route changes
@@ -46,6 +50,8 @@ export default function AnimatedRoutes() {
         <Routes location={displayedLocation}>
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />
+          <Route path="/archive" element={<ArchivePage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       )}
     </>

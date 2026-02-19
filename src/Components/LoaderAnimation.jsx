@@ -2,14 +2,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const helloLanguages = [
-  { text: "Hello", lang: "English" },
   { text: "नमस्ते", lang: "Hindi" },
+  { text: "Hello", lang: "English" },
   { text: "Bonjour", lang: "French" },
   { text: "Hola", lang: "Spanish" },
   { text: "Ciao", lang: "Italian" },
   { text: "こんにちは", lang: "Japanese" },
-  { text: "Hallo", lang: "German" },
   { text: "你好", lang: "Chinese" },
+  { text: "Hallo", lang: "German" },
 ];
 
 const fonts = [

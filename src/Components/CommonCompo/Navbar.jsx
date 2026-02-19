@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 
 
-export default function Navbar({colorInNavabar="white"}) {
+export default function Navbar({ colorInNavabar = "white" }) {
 
   const location = useLocation();
 
@@ -76,31 +76,33 @@ export default function Navbar({colorInNavabar="white"}) {
               ></span>
             )}
             <span
-                className={`absolute left-1/2 -bottom-3 w-2 h-2 bg-${colorInNavabar} rounded-full
+              className={`absolute left-1/2 -bottom-3 w-2 h-2 bg-${colorInNavabar} rounded-full
            transform -translate-x-1/2
            opacity-0 group-hover:opacity-100
            transition-opacity duration-300`}
-              ></span>
+            ></span>
           </h1>
         </MagneticLink>
         <MagneticLink>
-          <h1 className="relative inline-block group text-xl  cursor-pointer">
-            Contact
-            {location.pathname === "/contact" && (
-              <span
-                className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
+          <Link to="/contact">
+            <h1 className="relative inline-block group text-xl  cursor-pointer">
+              Contact
+              {location.pathname === "/contact" && (
+                <span
+                  className="absolute left-1/2 -bottom-3 w-2 h-2 bg-white rounded-full
            transform -translate-x-1/2
            opacity-0 group-hover:opacity-100
            transition-opacity duration-300"
-              ></span>
-            )}
-            <span
+                ></span>
+              )}
+              <span
                 className={`absolute left-1/2 -bottom-3 w-2 h-2 bg-${colorInNavabar} rounded-full
            transform -translate-x-1/2
            opacity-0 group-hover:opacity-100
            transition-opacity duration-300`}
               ></span>
-          </h1>
+            </h1>
+          </Link>
         </MagneticLink>
       </nav>
     </motion.header>

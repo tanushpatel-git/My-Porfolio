@@ -561,6 +561,7 @@ export default function WorkPage() {
                             {/* Button */}
                             <MagneticLink >
                                 <button
+                                    onClick={()=>{navigate('/archive')}}
                                     className="w-48 h-20 rounded-[9999px] border-2 border-neutral-200 text-white bg-(--loadBg) tracking-wide hover:scale-105 transition-transform overflow-hidden"
 
                                 >

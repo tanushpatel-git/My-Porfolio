@@ -1,4 +1,5 @@
 import TanushImage from "../../assets/TanushImage.png";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import MagneticLink from "../uiAnimationHooks/MagneticLink";
 import Fotter from "./Fotter";
@@ -10,6 +11,7 @@ import { useEffect } from "react";
 export default function Component() {
     const [offsetX, setOffsetX] = useState(0);
     const textHover = useRef(null);
+    const navigate = useNavigate();
 
     const handleMouseEnterForHover = () => {
         controls.start({
@@ -109,6 +111,7 @@ export default function Component() {
                             className="absolute right-20 -top-24">
                             <MagneticLink>
                                 <button
+                                    onClick={()=>{navigate("/contact")}}
                                     className="w-48 h-48 rounded-full bg-[#455ce9] text-white text-sm tracking-wide hover:scale-105 transition-transform overflow-hidden"
 
                                 >
